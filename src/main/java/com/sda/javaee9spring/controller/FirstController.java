@@ -38,7 +38,8 @@ public class FirstController {
 //    name param with value richard
 //    surname param with value tarassov
     @GetMapping("/my-name")
-    public String myName(@RequestParam("name") String myName, @RequestParam("surname") String mySurname) {
+    public String myName(@RequestParam(value = "name", defaultValue = "Richard") String myName,
+                         @RequestParam(value = "surname", defaultValue = "Tarassov") String mySurname) {
         log.info("myName() called");
         log.info("my name is: [{}] and my surname is: [{}]", myName, mySurname);
 //        log.info(String.format("my name is: [%s] and my surname is: [%s]", myName, mySurname));
