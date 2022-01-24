@@ -49,12 +49,12 @@ public class FirstController {
         log.info("my name is: [{}] and my surname is: [{}]", myFirstName, mySurname);
         log.info(String.format("my name is: [%s] and my surname is: [%s]", myFirstName, mySurname));
 
-        return "";
+        return "pages/name-and-surname";
     }
 
     @PostMapping("/my-first-post")
     public String myFirstOtherThanGetHttpMethod() {
         log.info("myFirstOtherThanGetHttpMethod() was called");
-        return "";
+        return "pages/post-page";
     }
 }
