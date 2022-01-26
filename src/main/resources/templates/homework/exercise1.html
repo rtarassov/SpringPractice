@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise1</title>
+</head>
+<body style="font-size: large">
+<h2 style="font-style: italic"> /** Exercise 1 **/</h2>
+
+<div id="Exercise-description">
+  This program takes three parameters:
+  <ul>
+      <li>first name</li>
+      <li>height in cm</li>
+      <li>weight in kilograms</li>
+  </ul>
+  The program will convert weight to pounds and height to inches and display them on a new page.
+</div>
+<br/>
+<h3>The result:</h3>
+<div id="exercise1-result">
+  <ul>
+      <li>My name is <b><span th:text="${name}"></span></b></li>
+      <li>My height in inches: <b><span th:text="${height}"></span></b></li>
+      <li>My weight in lbs: <b><span th:text="${weight}"></span></b></li>
+  </ul>
+
+</div>
+</body>
+</html>
