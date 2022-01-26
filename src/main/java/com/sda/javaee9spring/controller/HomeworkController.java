@@ -32,12 +32,15 @@ public class HomeworkController {
                             @RequestParam(value = "weight") Double myWeight,
                             Model pageParameters) {
 
-        myHeight = exercise1Service.metricsToImperialsHeight(myHeight);
-        myWeight = exercise1Service.metricsToImperialsWeight(myWeight);
+        double myHeightConverted = exercise1Service.metricsToImperialsHeight(myHeight);
+        double myWeightConverted = exercise1Service.metricsToImperialsWeight(myWeight);
 
         pageParameters.addAttribute("name", myName);
         pageParameters.addAttribute("height", myHeight);
         pageParameters.addAttribute("weight", myWeight);
+
+        pageParameters.addAttribute("heightConverted", myHeightConverted);
+        pageParameters.addAttribute("weightConverted", myWeightConverted);
 
         return "/homework/exercise1";
     }
