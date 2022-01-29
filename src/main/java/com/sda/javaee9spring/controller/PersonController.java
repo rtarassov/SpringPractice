@@ -11,10 +11,10 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/person")
+@RequestMapping("/persons")
 public class PersonController {
 
-    public static final String PERSONS_KEY = "personsKey";
+    public static final String PERSONS_KEY = "persons";
 
     @GetMapping("/names")
     public String showListOfPersonsNames(Model data) {
