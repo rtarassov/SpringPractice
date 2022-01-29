@@ -6,4 +6,5 @@
 
 ### Commands
 - git status - show what's going on in repository
-- 
+- git branch - show available branches on my machine
+- git branch -a - show all available branches - on my machine and remote ones
