@@ -7,5 +7,7 @@
 
 ### Commands
 - git status - show what's going on in repository
+- git log - shows git history
+- git log --graph shows git history as a graph
 - git branch - show available branches on my machine
 - git branch -a - show all available branches - on my machine and remote ones
