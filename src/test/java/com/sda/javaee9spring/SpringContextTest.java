@@ -1,6 +1,7 @@
 package com.sda.javaee9spring;
 
 import com.sda.javaee9spring.component.MyFirstSpringComponent;
+import com.sda.javaee9spring.component.SecondComponent;
 import com.sda.javaee9spring.controller.FirstController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,17 @@ public class SpringContextTest {
     @Test
     void manyObjectsOfTheSameTypeTest() {
         assertSame(myFirstSpringComponent, myFirstSpringComponentSecondReference);
+    }
+
+
+    @Autowired
+    private SecondComponent secondComponent1;
+
+    @Autowired
+    private SecondComponent secondComponent2;
+
+    @Test
+    void areComponentsTheSameTest() {
+        assertNotSame(secondComponent1, secondComponent2);
     }
 }
