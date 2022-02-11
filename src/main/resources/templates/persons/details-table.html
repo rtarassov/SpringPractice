@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Table</title>
+</head>
+<body>
+<h2>Persons details</h2>
+
+<!--for (Person person : persons)-->
+<ul th:each="person: ${persons}">
+    <li th:text="${person.name()}">Person name when application is running</li>
+    <li th:text="${person.surname()}">Person surname when application is running</li>
+    <li th:text="${person.age()}">Person age when application is running</li>
+</ul>
+
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Age</td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="person: ${persons}">
+            <td th:text="${person.name()}">Richard</td>
+            <td th:text="${person.surname()}">Tarassov</td>
+            <td th:text="${person.age()}">55</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
