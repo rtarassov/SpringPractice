@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public class MovieRepository {
 
-    public List<Movie> raedAllMoviesFromDatabase() {
+    public List<Movie> readAllMoviesFromDatabase() {
         return List.of();
     }
 }
