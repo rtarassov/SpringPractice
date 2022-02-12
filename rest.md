@@ -9,7 +9,6 @@
 - 4xx - client's errors
 - 5xx - server's errors
 
-
 ###Http message consists of:
 - request
   - url
