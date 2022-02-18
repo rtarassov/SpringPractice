@@ -22,7 +22,7 @@ public class RealPersonService {
         log.info("trying to read all persons entities...");
 
         var result = personRepository.findAll();
-        log.info("'person entities read from DB: " + result);
+        log.info("person entities read from DB: " + result);
         return result;
     }
 
