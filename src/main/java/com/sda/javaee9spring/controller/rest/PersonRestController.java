@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -33,16 +34,10 @@ public class PersonRestController {
     }
 
     @GetMapping("/persons/{id}")
-    public ResponseEntity<PersonEntity> findPersonById(@PathVariable("id") Long personId) {
-        log.info("Trying to find a person by id [{}]", personId);
-
+    public ResponseEntity<PersonEntity> findPersonEntityById(@PathVariable("id") Long personId) {
+        log.info("trying to find person entity by id: [{}]", personId);
         var personEntity = personService.findPersonById(personId);
-        if (personEntity == null) {
-            log.info("Didn't find a personEntity");
-            return ResponseEntity.notFound().build();
-//            return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(personEntity);
-//        return new ResponseEntity<>(personEntity, null, HttpStatus.OK);
+        return personEntity.map(personEntity1 -> ResponseEntity.ok(personEntity1)) // Optional<PersonEntity> -> Optional<ResponseEntity<PersonEntity>>
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
