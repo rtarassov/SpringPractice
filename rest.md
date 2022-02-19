@@ -35,12 +35,13 @@
   - read
     - whole collections: /persons - with GET
     - one item: /persons/{id} - with GET, eg. /persons/1
+    - status code for nonexistent id should be 404
   - create
     - url: /persons - with POST
     - payload put inside request body
   - delete
     - url: /persons/{id} - with DELETE, eg. /persons/1
-    - no content in request
+    - no content in request - use 204 status code
   - update
     - url: /persons/{id} - with PUT, eg. /persons/1 - replace object
     - url: /persons/{id} - with PATCH, eg. /persons/1 - partial update
