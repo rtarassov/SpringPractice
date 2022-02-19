@@ -4,6 +4,8 @@ import com.sda.javaee9spring.entity.PersonEntity;
 import com.sda.javaee9spring.service.RealPersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +33,16 @@ public class PersonRestController {
     }
 
     @GetMapping("/persons/{id}")
-    public PersonEntity findPersonById(@PathVariable("id") Long personId) {
+    public ResponseEntity<PersonEntity> findPersonById(@PathVariable("id") Long personId) {
         log.info("Trying to find a person by id [{}]", personId);
-        return personService.findPersonById(personId);
+
+        var personEntity = personService.findPersonById(personId);
+        if (personEntity == null) {
+            log.info("Didn't find a personEntity");
+            return ResponseEntity.notFound().build();
+//            return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(personEntity);
+//        return new ResponseEntity<>(personEntity, null, HttpStatus.OK);
     }
 }
