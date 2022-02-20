@@ -52,13 +52,16 @@ public class PersonRestController {
     }
 
     @PostMapping("/persons")
-    public ResponseEntity<PersonEntity> createPersonEntity(@RequestBody PersonEntity newPersonToSave) {
+    public ResponseEntity<?> createPersonEntity(@RequestBody PersonEntity newPersonToSave) {
 
-        log.info("Received new person to save: [{}]", newPersonToSave);
-        personService.savePerson(newPersonToSave);
+        log.info("received new person to save: [{}]", newPersonToSave);
+        boolean saved = personService.savePerson(newPersonToSave);
 
-        return ResponseEntity.created(URI.create("/api/persons/%d"
-                .formatted(newPersonToSave.getId())))
-                .body(newPersonToSave);
+        if (saved) {
+            return ResponseEntity.created(URI.create("/api/persons/%d".formatted(newPersonToSave.getId())))
+                    .body(newPersonToSave);
+        } else {
+            return ResponseEntity.badRequest().body("You've sent me wrong data!!!");
+        }
     }
 }

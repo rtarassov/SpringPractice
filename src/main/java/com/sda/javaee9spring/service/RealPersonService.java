@@ -1,6 +1,5 @@
 package com.sda.javaee9spring.service;
 
-import com.sda.javaee9spring.entity.Person;
 import com.sda.javaee9spring.entity.PersonEntity;
 import com.sda.javaee9spring.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -51,13 +50,34 @@ public class RealPersonService {
     }
 
     @Transactional
-    public PersonEntity savePerson(PersonEntity personEntity) {
-        if (!personRepository.checkDuplicates(personEntity.getName(), personEntity.getSurname())) {
-            personRepository.save(personEntity);
-            log.info("Entity after saving: [{}]", personEntity);
+    public boolean savePerson(PersonEntity entity) {
+        boolean result = false;
+        log.info("entity for saving: [{}]", entity);
+        if (checkIfEntityIsValid(entity) && !personRepository.checkDuplicates(entity.getName(), entity.getSurname())) {
+            personRepository.save(entity);
+            log.info("entity after saving: [{}]", entity);
+            result = true;
         } else {
-            log.info("Found a duplicate, new entity not saved!");
+            log.info("Found a duplicate, new entity was not saved.");
         }
-        return personEntity;
+
+        return result;
+    }
+
+    private static boolean checkIfEntityIsValid(PersonEntity personEntity) {
+        boolean result = true;
+
+        if (personEntity.getName() == null || personEntity.getName().isBlank()) {
+            result = false;
+        }
+        if (personEntity.getSurname() == null || personEntity.getSurname().isBlank()) {
+            result = false;
+        }
+        if (personEntity.getAge() < 0) {
+            result = false;
+        }
+
+        log.info("Entity: [{}], isValid?: [{}]", personEntity, result);
+        return result;
     }
 }
