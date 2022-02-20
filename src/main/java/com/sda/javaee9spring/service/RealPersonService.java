@@ -50,10 +50,14 @@ public class RealPersonService {
         return result;
     }
 
+    @Transactional
     public PersonEntity savePerson(PersonEntity personEntity) {
-        log.info("Entity to save: [{}]", personEntity);
-        var savedPerson = personRepository.save(personEntity);
-        log.info("Entity after saving: [{}]", personEntity);
-        return savedPerson;
+        if (!personRepository.checkDuplicates(personEntity.getName(), personEntity.getSurname())) {
+            personRepository.save(personEntity);
+            log.info("Entity after saving: [{}]", personEntity);
+        } else {
+            log.info("Found a duplicate, new entity not saved!");
+        }
+        return personEntity;
     }
 }
