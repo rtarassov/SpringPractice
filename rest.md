@@ -31,6 +31,7 @@
   - PATCH method - for partial update
 
 - urls - good practice(playing with person)
+- use nouns for names of Your endpoints (not verbs)
 - we need to treat items like hierarchical collections
   - read
     - whole collections: /persons - with GET
@@ -41,7 +42,8 @@
     - payload put inside request body
   - delete
     - url: /persons/{id} - with DELETE, eg. /persons/1
-    - no content in request - use 204 status code
+    - no content in response - use 204 status code
+    - status code for nonexistent id should be 404
   - update
     - url: /persons/{id} - with PUT, eg. /persons/1 - replace object
     - url: /persons/{id} - with PATCH, eg. /persons/1 - partial update

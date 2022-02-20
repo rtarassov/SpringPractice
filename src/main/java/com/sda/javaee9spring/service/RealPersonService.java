@@ -49,4 +49,11 @@ public class RealPersonService {
 
         return result;
     }
+
+    public PersonEntity savePerson(PersonEntity personEntity) {
+        log.info("Entity to save: [{}]", personEntity);
+        var savedPerson = personRepository.save(personEntity);
+        log.info("Entity after saving: [{}]", personEntity);
+        return savedPerson;
+    }
 }
