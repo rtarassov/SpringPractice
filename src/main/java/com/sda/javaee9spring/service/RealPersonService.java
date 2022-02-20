@@ -5,6 +5,7 @@ import com.sda.javaee9spring.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +15,11 @@ import java.util.Optional;
 public class RealPersonService {
 
     private final PersonRepository personRepository;
+    private final RestTemplate restTemplate;
 
-    public RealPersonService(PersonRepository personRepository) {
+    public RealPersonService(PersonRepository personRepository, RestTemplate restTemplate) {
         this.personRepository = personRepository;
+        this.restTemplate = restTemplate;
     }
 
     public List<PersonEntity> readAllPersonEntities() {
